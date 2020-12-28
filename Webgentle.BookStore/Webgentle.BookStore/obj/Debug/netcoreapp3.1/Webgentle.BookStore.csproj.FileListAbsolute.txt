@@ -395,3 +395,4 @@ C:\learning\BookStore\Webgentle.BookStore\Webgentle.BookStore\bin\Debug\netcorea
 C:\learning\BookStore\Webgentle.BookStore\Webgentle.BookStore\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
 C:\learning\BookStore\Webgentle.BookStore\Webgentle.BookStore\bin\Debug\netcoreapp3.1\System.Text.Json.dll
 C:\learning\BookStore\Webgentle.BookStore\Webgentle.BookStore\obj\Debug\netcoreapp3.1\Webgentle.BookStore.MvcApplicationPartsAssemblyInfo.cs
+C:\learning\BookStore\Webgentle.BookStore\Webgentle.BookStore\obj\Debug\netcoreapp3.1\Razor\Views\Book\GetBook.cshtml.g.cs

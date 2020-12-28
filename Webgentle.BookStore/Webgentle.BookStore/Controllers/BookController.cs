@@ -23,9 +23,9 @@ namespace Webgentle.BookStore.Controllers
 
         }
 
-        public BookModel GetBook(int id)
+        public ViewResult GetBook(int id)
         {
-            return _bookRepository.GetBookbyId(id);
+            return View(_bookRepository.GetBookbyId(id));
         }
 
         public List<BookModel> Searchbook(string bookname, string authorname)
