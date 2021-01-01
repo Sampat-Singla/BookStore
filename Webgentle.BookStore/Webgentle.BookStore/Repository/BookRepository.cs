@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace Webgentle.BookStore.Repository
             _context = context;
         }
         
-        public int AddNewBook(BookModel model)
+        public async Task<int> AddNewBook(BookModel model)
         {
             var newBook = new Books()
             {
@@ -28,20 +29,54 @@ namespace Webgentle.BookStore.Repository
                 TotalPages = model.TotalPages
             };
 
-            _context.Books.Add(newBook);
-            _context.SaveChanges();
+           await _context.Books.AddAsync(newBook);
+            await _context.SaveChangesAsync();
 
             return newBook.Id;
 
         }
-        public List<BookModel> GetAllBooks()
+        public async Task<List<BookModel>> GetAllBooks()
         {
-            return bookModels();
+            var books = new List<BookModel>();
+            var allbooks = await _context.Books.ToListAsync();
+            if (allbooks?.Any() == true)
+            {
+                foreach( var book in allbooks)
+                {
+                    books.Add(new BookModel()
+                    {
+                         Author = book.Author,
+                          Category = book.Category,
+                           Description = book.Description,
+                             Id = book.Id,
+                              Language = book.Language,
+                               Title = book.Title,
+                                TotalPages = book.TotalPages
+                    });
+                }
+            }
+            return books;
         }
 
-        public BookModel GetBookbyId(int id)
+        public async Task<BookModel> GetBookbyId(int id)
         {
-            return bookModels().Where(x => x.Id == id).FirstOrDefault();
+            var book = await _context.Books.FindAsync(id);
+            if (book  != null)
+            {
+                var bookdetails = new BookModel()
+                {
+                    Author = book.Author,
+                    Category = book.Category,
+                    Description = book.Description,
+                    Id = book.Id,
+                    Language = book.Language,
+                    Title = book.Title,
+                    TotalPages = book.TotalPages
+                };
+                return bookdetails;
+            }
+
+            return null;
         }
 
         public List<BookModel> SearchBook(string title, string author)

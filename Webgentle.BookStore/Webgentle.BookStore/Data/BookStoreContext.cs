@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Webgentle.BookStore.Models;
 
 namespace Webgentle.BookStore.Data
 {
@@ -24,6 +25,8 @@ namespace Webgentle.BookStore.Data
             optionsBuilder.UseSqlServer("Server = .; Database = BookStore; user id = sa; password = GL@M6@73s;");
             base.OnConfiguring(optionsBuilder);
         }
+
+        public DbSet<Webgentle.BookStore.Models.BookModel> BookModel { get; set; }
 
     }
 }
